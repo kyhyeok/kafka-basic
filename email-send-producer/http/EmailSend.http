@@ -1,0 +1,10 @@
+### 방문환자 등록 (기존 환자)
+POST http://localhost:8080/api/emails
+Content-Type: application/json
+
+{
+  "from": "sender@test.com",
+  "to": "receiver@test.com",
+  "subject": "제목",
+  "body": "내용"
+}
