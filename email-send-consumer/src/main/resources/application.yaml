@@ -1,0 +1,10 @@
+server:
+  port: 0 # 8080번 포트는 Producer 서버에서 사용했기 때문에 충돌할 수 있으므로 0 으로 선언해준다. 스프링 부트가 사용 가능한 랜덤한 포트를 찾아서 서버를 실행시켜준다.
+
+spring:
+  kafka:
+    bootstrap-servers: 13.125.45.117:9092
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest

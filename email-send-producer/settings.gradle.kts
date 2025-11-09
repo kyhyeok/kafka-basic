@@ -1,1 +1,1 @@
-rootProject.name = "kafka-email-send-producer"
+rootProject.name = "email-send-producer"
