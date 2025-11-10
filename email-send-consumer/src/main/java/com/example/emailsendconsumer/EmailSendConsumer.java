@@ -1,6 +1,8 @@
 package com.example.emailsendconsumer;
 
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.RetryableTopic;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,12 +12,28 @@ public class EmailSendConsumer {
             topics = "email.send",
             groupId = "email-send-group"
     )
+    @RetryableTopic(
+            attempts = "5",
+            backoff = @Backoff(delay = 1000, multiplier = 2),
+            // email.send.dlt
+            dltTopicSuffix = ".dlt"
+    )
     public void consume(String message) {
         System.out.println("Kafka로부터 받아온 메시지: " + message);
 
         EmailSendMessage emailSendMessage = EmailSendMessage.fromJson(message);
 
+        if (emailSendMessage.getTo().equals("fail@test.com")) {
+            System.out.println("잘못된 이메일 주소로 인해 발송 실패");
+            throw new RuntimeException("잘못된 이메일 주소로 인해 발송 실패");
+        }
+
         // 카프카에 대한 내용이므로 실제 이메알 발송 로직은 생략.
+        try {
+            Thread.sleep(3_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("이메일 발송 실패");
+        }
 
         System.out.println("이메일 발송 완료");
     }
