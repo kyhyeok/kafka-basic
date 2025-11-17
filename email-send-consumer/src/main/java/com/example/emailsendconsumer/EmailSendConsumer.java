@@ -10,12 +10,12 @@ public class EmailSendConsumer {
 
     @KafkaListener(
             topics = "email.send",
-            groupId = "email-send-group"
+            groupId = "email-send-group",
+            concurrency = "3"
     )
     @RetryableTopic(
             attempts = "5",
             backoff = @Backoff(delay = 1000, multiplier = 2),
-            // email.send.dlt
             dltTopicSuffix = ".dlt"
     )
     public void consume(String message) {

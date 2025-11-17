@@ -3,7 +3,7 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: 13.125.45.117:9092
+    bootstrap-servers: 43.201.32.208:9092
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
