@@ -1,4 +1,4 @@
-package com.example.emailsendproducer;
+package com.example.userservice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

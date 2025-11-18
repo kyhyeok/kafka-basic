@@ -1,4 +1,4 @@
-package com.example.emailsendproducer;
+package com.example.userservice;
 
 public record SendEmailRequestDto(
         String from,

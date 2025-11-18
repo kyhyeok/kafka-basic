@@ -1,4 +1,4 @@
-package com.example.emailsendproducer;
+package com.example.userservice;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
